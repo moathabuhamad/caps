@@ -4,7 +4,11 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
-const io = require('socket.io-client');
+const socket = require('socket.io');
+const port = process.env.PORT || 3000;
+
+const io = socket(port);
+
 const capsNameSpace = io.connect(`http://localhost:3000/caps`);
 
 app.use(express.json());
@@ -24,4 +28,17 @@ capsNameSpace.on('delivered', payload => {
   console.log(`Thank you for delivering ${payload.orderID}`);
 });
 
-app.listen(3001, () => console.log(`listen on 3001`));
+io.on('connection',(socket2)=>{
+  console.log(`Welcome, your socket id is: `,socket2.id);
+
+  socket2.on('hello',(payload)=>{
+      console.log('The hub heard the hello event');
+      console.log('hello ', payload);
+      io.emit('hi');
+  });
+
+  socket2.on('bye',payload=>{
+      console.log('the server said bye');
+  })
+});
+
