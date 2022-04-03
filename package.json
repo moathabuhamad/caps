@@ -18,9 +18,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/moathabuhamad/CAPS-system/issues"
+    "url": "https://github.com/moathabuhamad/caps/issues"
   },
-  "homepage": "https://github.com/moathabuhamad/CAPS-system#readme",
+  "homepage": "https://github.com/moathabuhamad/caps#readme",
   "dependencies": {
     "chance": "^1.1.8",
     "dotenv": "^16.0.0",
